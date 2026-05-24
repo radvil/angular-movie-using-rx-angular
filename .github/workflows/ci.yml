@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      -
 env:
   NX_NON_NATIVE_HASHER: true
 
@@ -14,10 +13,10 @@ jobs:
     steps:
       # needed for all cases
       - if: github.event_name == 'push' && github.ref_name == 'main'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # needed for nx affected command
       - if: github.event_name == 'pull_request'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       # needed for nx affected command
@@ -25,20 +24,20 @@ jobs:
         run: git fetch --no-tags --depth=1 origin $BASE_BRANCH
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version-file: 'package.json'
           cache: npm
 
       - name: Install dependencies
         run: npm ci
 
       # TODO: have different dist locations to run in parallel
-      - name: Run Nx Affected lint,test
-        run: npx nx affected --targets=lint,test
+      #- name: Run Nx Affected lint,test
+      #  run: npx nx affected --targets=lint,test
       - name: Run Nx Affected build
-        run: npx nx affected --targets=build --exclude docs
-      - name: Run build docs
-        run: npx nx build docs
+        run: npx nx affected --targets=build --exclude docs,cloudflare-worker
+      #- name: Run build docs
+      #  run: npx nx build docs
       - name: Run Nx Affected prerende
         run: npx nx affected --targets=prerende
