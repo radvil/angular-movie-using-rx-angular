@@ -35,7 +35,7 @@ export class AuthEffects {
         // after redirecting to the redirectUrl, the requestToken in localStorage will indicate that an accessToken should be requested
         window.localStorage.setItem('requestToken', request_token);
         this.document.location.replace(
-          `https://www.themoviedb.org/auth/access?request_token=${request_token}`
+          `https://www.themoviedb.org/auth/access?request_token=${request_token}`,
         );
       });
   };
