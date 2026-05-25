@@ -33,7 +33,6 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import AccountMenuComponent from './account-menu/account-menu.component';
 
 @Component({
-  standalone: true,
   imports: [
     RouterLink,
     RxLet,
@@ -48,7 +47,7 @@ import AccountMenuComponent from './account-menu/account-menu.component';
   ],
   selector: 'app-shell',
   templateUrl: './app-shell.component.html',
-  styleUrls: ['./app-shell.component.scss'],
+  styleUrls: ['./app-shell.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated,
 })

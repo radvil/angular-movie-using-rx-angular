@@ -1,10 +1,14 @@
-import {RxLet} from '@rx-angular/template/let';
-import {ChangeDetectionStrategy, Component, inject, OnDestroy,} from '@angular/core';
-import {ListCreatePageAdapter} from './list-create-page.adapter';
-import {RxIf} from '@rx-angular/template/if';
+import { RxLet } from '@rx-angular/template/let';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnDestroy,
+} from '@angular/core';
+import { ListCreatePageAdapter } from './list-create-page.adapter';
+import { RxIf } from '@rx-angular/template/if';
 
 @Component({
-  standalone: true,
   imports: [RxLet, RxIf],
   template: `
     <article>
@@ -63,8 +67,8 @@ import {RxIf} from '@rx-angular/template/if';
     </article>
   `,
   styleUrls: [
-    './list-create-page.component.scss',
-    '../../../ui/component/button/_button.scss',
+    './list-create-page.component.css',
+    '../../../ui/component/button/_button.css',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

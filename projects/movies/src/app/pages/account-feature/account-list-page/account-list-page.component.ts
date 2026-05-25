@@ -15,11 +15,10 @@ import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
-  standalone: true,
   imports: [RouterLink, RxFor, GridListComponent, NgOptimizedImage],
   selector: 'ct-person',
   templateUrl: './account-list-page.component.html',
-  styleUrls: ['./account-list-page.component.scss'],
+  styleUrls: ['./account-list-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated,
 })

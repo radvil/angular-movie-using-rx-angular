@@ -11,7 +11,6 @@ const numStars = 5;
 const starsArray: number[] = new Array(numStars).fill(1);
 
 @Component({
-  standalone: true,
   imports: [NgClass],
   selector: 'ui-star-rating',
   template: `
@@ -33,8 +32,8 @@ const starsArray: number[] = new Array(numStars).fill(1);
     }
   `,
   styleUrls: [
-    'star-rating.component.scss',
-    '../../component/tooltip/_tooltip.scss',
+    'star-rating.component.css',
+    '../../component/tooltip/_tooltip.css',
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated,
