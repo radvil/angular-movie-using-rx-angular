@@ -1,6 +1,13 @@
-import {YargsCommandObject} from '../../../../../tooling/cli/model';
-import {getCliParam} from '../../../../../tooling/cli/utils';
-import {formatBytes, formatChunkName, readFile} from '../utils';
+import { YargsCommandObject } from '../../../../../tooling/cli/model';
+import { getCliParam } from '../../../../../tooling/cli/utils';
+import {
+  formatBytes,
+  formatChunkName,
+  getInitialAssets,
+  getStatsAssets,
+  isLazyAsset,
+  readFile,
+} from '../utils';
 import * as fs from 'fs';
 
 export async function run(): Promise<void> {
@@ -19,16 +26,15 @@ export async function run(): Promise<void> {
   }
   const [_, bottom] = rest.split('<!-- bundle-stats-end -->');
 
-  const initialAssets: [string, number][] = stats.assets
-    .filter((o: any) => o.name.match(/main|styles|runtime|polyfills+[.]/g))
-    .map(({ name, size }: any) => [name, size]);
-  const restAssets: [string, number][] = stats.assets
-    .filter(
-      (o: any) =>
-        !o.name.match(/main|styles|runtime|polyfills+[.]/g) &&
-        o.name.endsWith('.js')
-    )
-    .map(({ name, size }: any) => [name, size]);
+  const assets = getStatsAssets(stats);
+  const initialAssets: [string, number][] = getInitialAssets(stats).map(
+    ({ name, size }) => [name, size]
+  );
+  const initialNames = new Set(initialAssets.map(([name]) => name));
+  const restAssets: [string, number, string?][] = assets
+    .filter((asset) => !initialNames.has(asset.name) && isLazyAsset(asset))
+    .sort((a, b) => b.size - a.size)
+    .map(({ name, size, entryPoint }) => [name, size, entryPoint]);
 
   let statsContent =
     top +
@@ -42,15 +48,15 @@ export async function run(): Promise<void> {
 | ${formatChunkName(name)}           | ${formatBytes(size)} |`;
   });
   statsContent += `
-  | **Initial Total** | **${formatBytes(
+| **Initial Total** | **${formatBytes(
     initialAssets.reduce((a, [_, s]) => a + s, 0)
   )}** |`;
   statsContent += `
-  | Names             |       Size |`;
+| Names             |       Size |`;
 
-  restAssets.forEach(([name, size]) => {
+  restAssets.forEach(([name, size, entryPoint]) => {
     statsContent += `
-| ${formatChunkName(name)}           | ${formatBytes(size)} |`;
+| ${formatChunkName(name, entryPoint)}           | ${formatBytes(size)} |`;
   });
   statsContent +=
     `

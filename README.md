@@ -24,34 +24,56 @@ For now you can search the codebase for "Perf Tip" later on there will be proppe
 
 ### Bundle Stats
 
+
 <!-- bundle-stats-start -->
-
-| Names                                                                               | Size          |
-| ----------------------------------------------------------------------------------- | ------------- |
-| main.js                                                                             | 343.15 KB     |
-| styles.css                                                                          | 6.17 KB       |
-| runtime.js                                                                          | 2.61 KB       |
-| **Initial Total**                                                                   | **351.93 KB** |
-| Names                                                                               | Size          |
-| app_pages_movie-detail-page_movie-detail-page_component_ts.js                       | 16.83 KB      |
-| app_pages_person-detail-page_person-detail-page_component_ts.js                     | 11.79 KB      |
-| a-6a8199.js                                                                         | 10.07 KB      |
-| app_pages_account-feature_list-detail-page_list-movies_list-movies_compon-d13d08.js | 9.83 KB       |
-| common.js                                                                           | 7.69 KB       |
-| app_pages_account-feature_list-detail-page_list-items-edit_list-items-edi-13eb42.js | 7.23 KB       |
-| app_pages_movie-list-page_movie-list-page_component_ts.js                           | 5.84 KB       |
-| app_pages_account-feature_list-create-page_list-create-page_component_ts--1f481e.js | 5.7 KB        |
-| app_app-shell_account-menu_account-menu_component_ts.js                             | 5.63 KB       |
-| app_pages_account-feature_account-list-page_account-list-page_component_ts.js       | 4.89 KB       |
-| app_pages_account-feature_list-detail-page_list-image_list-image_componen-cb4b89.js | 4.36 KB       |
-| default-node_modules_rx-angular_template_fesm2022_template-if_mjs.js                | 4.23 KB       |
-| app_pages_account-feature_list-detail-page_list-remove_list-remove_compon-a10eb2.js | 3.41 KB       |
-| app_pages_account-feature_list-detail-page_list-detail-page_component_ts--a2c81d.js | 3.24 KB       |
-| app_pages_not-found-page_not-found-page_component_ts.js                             | 1.77 KB       |
-| app_pages_account-feature_list-detail-page_list-detail-page_routes_ts.js            | 1.54 KB       |
-| app_pages_account-feature_account-feature-page_routes_ts.js                         | 926 Bytes     |
-
+| Names             |       Size |
+| ---               | ---        |
+| chunk-H73X5IJZ.js           | 176.04 KB |
+| chunk-J5RJBBBA.js           | 100.02 KB |
+| main-HAHZT3VR.js           | 30.06 KB |
+| chunk-26THTVGX.js           | 23.59 KB |
+| chunk-MFJP3XQD.js           | 13.34 KB |
+| chunk-DD4274WW.js           | 11.51 KB |
+| chunk-UJXKG7ZY.js           | 5.98 KB |
+| styles-6J6M4RLR.css           | 5.69 KB |
+| chunk-F6TX2SNN.js           | 3.56 KB |
+| chunk-XEGPBJW5.js           | 3.44 KB |
+| chunk-BWRSEVT6.js           | 2.31 KB |
+| chunk-ENKFPH2E.js           | 1.53 KB |
+| chunk-3BVTSY3H.js           | 1.31 KB |
+| chunk-TERIXCX3.js           | 1.11 KB |
+| chunk-IPYUPOU3.js           | 1.1 KB |
+| chunk-IS6BG5PM.js           | 981 Bytes |
+| chunk-HMA6A7BH.js           | 675 Bytes |
+| chunk-7CGTOI24.js           | 618 Bytes |
+| chunk-SRLHFTA6.js           | 559 Bytes |
+| chunk-4EXWTXAN.js           | 380 Bytes |
+| chunk-PNQWYDWA.js           | 310 Bytes |
+| chunk-YPVBW5JE.js           | 197 Bytes |
+| chunk-6SM3TQVG.js           | 153 Bytes |
+| chunk-E2EYHV3P.js           | 136 Bytes |
+| chunk-QBRSGN6K.js           | 125 Bytes |
+| chunk-K3RHTP23.js           | 96 Bytes |
+| chunk-LFUTSNCE.js           | 37 Bytes |
+| **Initial Total** | **384.85 KB** |
+| Names             |       Size |
+| movie-detail-page.component           | 16.08 KB |
+| person-detail-page.component           | 12.17 KB |
+| list-items-edit.component           | 7.24 KB |
+| list-create-page.component           | 6.34 KB |
+| movie-list-page.component           | 6.22 KB |
+| account-menu.component           | 5.11 KB |
+| account-list-page.component           | 3.43 KB |
+| list-detail-page.component           | 3.22 KB |
+| list-remove.component           | 3.14 KB |
+| list-image.component           | 3.08 KB |
+| not-found-page.component           | 1.72 KB |
+| list-movies.component           | 1.08 KB |
+| list-detail-page.routes           | 610 Bytes |
+| account-feature-page.routes           | 550 Bytes |
+| movie-list.component           | 460 Bytes |
 <!-- bundle-stats-end -->
+
 
 ## Comparison to next and nuxt
 
@@ -87,7 +109,11 @@ Clone and install the dependencies for `angular-movies` locally:
 
 ## Running locally
 
-- `nx run movies:serve`: dev server
+- `nx run movies:build:development`: development build
+- `nx run movies:build:production`: production build (output: `dist/projects/movies`)
+- `npm start` / `nx run movies:serve:development`: dev server on port 4200
+- `nx run movies:serve-static:production`: serve the production build locally
+- `nx run docs:build`: regenerate README bundle stats (output: `dist/measures/movies`)
 
 ## Tech Stack
 
